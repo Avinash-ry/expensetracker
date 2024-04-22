@@ -1,0 +1,17 @@
+<!-- upload_process.html -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" required>
+    <button type="submit">Upload CSV</button>
+    {% if header_value_pairs %}
+        <div>Review the first 10 rows:</div>
+        {% for row in header_value_pairs %}
+            <div>
+                {% for header, value in row.items %}
+                    <span><strong>{{ header }}:</strong> {{ value }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" name="confirm">Confirm and Save to Database</button>
+    {% endif %}
+</form>

@@ -10,3 +10,10 @@ class CustomLoginForm(forms.Form):
     )
     next = forms.CharField(widget=forms.HiddenInput())
     state = forms.CharField(widget=forms.HiddenInput())
+
+
+class CSVUploadForm(forms.Form):
+    file = forms.FileField()
+
+class FileUploadForm(forms.Form):
+    file = forms.FileField()

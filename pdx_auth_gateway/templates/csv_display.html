@@ -1,0 +1,30 @@
+<!-- csv_display.html -->
+<h1>CSV Data</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" required>
+    <button type="submit">Upload CSV</button>
+</form>
+
+{% if rows %}
+    <table border="1">
+        <thead>
+            <tr>
+                {% for cell in rows.0 %}
+                    <th>{{ cell }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                {% if forloop.counter > 1 %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

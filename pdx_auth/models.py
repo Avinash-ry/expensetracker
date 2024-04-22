@@ -84,3 +84,15 @@ class ConnectedApplication(models.Model):
     def __str__(self):
         return f'{self.from_application} -> {self.to_application}'
 
+from django.db import models
+
+class Transaction(models.Model):
+    transaction_date = models.DateField(verbose_name="Transaction Date")
+    description = models.TextField(verbose_name="Description")
+    ref_number = models.CharField(max_length=255, verbose_name="Reference Number")
+    debit_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Debit Amount", null=True, blank=True)
+    credit_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Credit Amount", null=True, blank=True)
+    account = models.CharField(max_length=255, verbose_name="Account")
+
+    def __str__(self):
+        return f"{self.description} - {self.ref_number}"
