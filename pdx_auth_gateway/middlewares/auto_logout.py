@@ -12,7 +12,7 @@ class AutoLogoutMiddleware:
         if request.user.is_authenticated:
             last_login_time = request.user.last_login.timestamp()
 
-            timeout_duration = 5  # in seconds
+            timeout_duration = 500  # in seconds
 
             if time.time() - last_login_time > timeout_duration:
                 logout(request)
