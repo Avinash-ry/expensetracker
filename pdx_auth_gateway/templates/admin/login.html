@@ -1,0 +1,14 @@
+{% extends 'admin/login.html' %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <div style="text-align: center;">
+      <p>
+        You are authenticated as <span style="text-decoration: underline;">{{ user.email }}</span>
+      </p>
+      <p>Please logout from your app to access Django-admin.</p>
+    </div>
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
